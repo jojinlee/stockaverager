@@ -1,0 +1,150 @@
+﻿@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --color-canvas: #F7F6F3;
+  --color-canvas-soft: #FBFBFA;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F9F9F8;
+  --color-line: #EAEAEA;
+  --color-hairline: rgba(0, 0, 0, 0.06);
+
+  --color-ink: #2F2E2B;
+  --color-ink-muted: #787774;
+  --color-ink-faint: #A6A49F;
+
+  --color-pale-red: #FDEBEC;
+  --color-pale-red-ink: #9F2F2D;
+  --color-pale-blue: #E1F3FE;
+  --color-pale-blue-ink: #1F6C9F;
+  --color-pale-green: #EDF3EC;
+  --color-pale-green-ink: #346538;
+  --color-pale-yellow: #FBF3DB;
+  --color-pale-yellow-ink: #956400;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    min-height: 100dvh;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface border border-line rounded-xl p-5 sm:p-6;
+  }
+
+  .card-title {
+    @apply text-base font-semibold text-ink tracking-tight;
+  }
+
+  .card-subtitle {
+    @apply text-sm text-ink-muted mt-0.5;
+  }
+
+  .icon-chip {
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-lg text-sm shrink-0;
+  }
+
+  .field-label {
+    @apply block text-xs font-medium text-ink-muted mb-1.5;
+  }
+
+  /* 16px text prevents iOS zoom on focus */
+  .field-input {
+    @apply w-full h-11 px-3 rounded-lg bg-surface border border-line text-base text-ink
+      placeholder:text-ink-faint transition-colors
+      focus:outline-none focus:border-ink-faint focus:ring-4 focus:ring-hairline;
+  }
+
+  .field-static {
+    @apply w-full h-11 px-3 flex items-center rounded-lg bg-surface-muted border border-line text-base text-ink font-mono;
+  }
+
+  .tag {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium;
+  }
+  .tag-red { @apply bg-pale-red text-pale-red-ink; }
+  .tag-blue { @apply bg-pale-blue text-pale-blue-ink; }
+  .tag-green { @apply bg-pale-green text-pale-green-ink; }
+  .tag-yellow { @apply bg-pale-yellow text-pale-yellow-ink; }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 h-11 px-4 rounded-lg text-sm font-medium
+      transition-colors select-none disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-ink text-white hover:bg-black active:bg-black;
+  }
+  .btn-ghost {
+    @apply text-ink-muted hover:bg-surface-muted hover:text-ink;
+  }
+  .btn-danger {
+    @apply text-pale-red-ink hover:bg-pale-red;
+  }
+
+  .stat-label {
+    @apply text-xs text-ink-muted;
+  }
+  .stat-value {
+    @apply font-mono text-lg sm:text-xl font-medium text-ink tabular-nums;
+  }
+
+  .range {
+    @apply w-full h-6 bg-transparent appearance-none cursor-pointer touch-pan-y;
+  }
+  .range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 9999px;
+    background: var(--color-line);
+  }
+  .range::-moz-range-track {
+    height: 4px;
+    border-radius: 9999px;
+    background: var(--color-line);
+    border: none;
+  }
+  .range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    margin-top: -9px;
+    border-radius: 9999px;
+    background: var(--color-surface);
+    border: 1px solid #D6D5D1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+  .range::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    background: var(--color-surface);
+    border: 1px solid #D6D5D1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+  .range:focus-visible {
+    outline: none;
+  }
+  .range:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.06);
+  }
+}
